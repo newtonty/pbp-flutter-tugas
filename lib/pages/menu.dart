@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:study_tracker/widgets/drawer.dart';
+import 'package:study_tracker/pages/form.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -7,11 +9,12 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
   appBar: AppBar(
-    // Set title aplikasi menjadi Money Tracker
+    // Set title aplikasi menjadi Study Tracker
     title: const Text( 
       'Study Tracker',
     ),
   ),
+  drawer: const DrawerMenu(),
   body: SingleChildScrollView( // Widget wrapper yang dapat discroll
     child: Padding( 
       padding: const EdgeInsets.all(10.0), // Set padding dari halaman
@@ -75,10 +78,11 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.green,
                 child: InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(const SnackBar(
-                      content: Text("Kamu telah menekan tombol Tambah Tugas!")));
+                    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MyFormPage()),
+    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(8),
@@ -107,10 +111,12 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.green,
                 child: InkWell(
                   onTap: () {
+                    
                     ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(const SnackBar(
                       content: Text("Kamu telah menekan tombol Logout!")));
+                    
                   },
                   child: Container(
                     padding: const EdgeInsets.all(8),
